@@ -1,5 +1,5 @@
 pkgname=uvc-gadget
-pkgver=1
+pkgver=20210207
 pkgrel=1
 pkgdesc='UVC gadget userspace sample application'
 arch=('armv6h' 'armv7h' 'aarch64')
@@ -10,6 +10,11 @@ source=(
     "git://github.com/RoEdAl/${pkgname}.git"
 )
 md5sums=('SKIP')
+
+pkgver() {
+	cd ${srcdir}/${pkgname}
+	git log -1 --format=%cd --date=short|tr -d -
+}
 
 build() {
 	mkdir -p ${srcdir}/build
